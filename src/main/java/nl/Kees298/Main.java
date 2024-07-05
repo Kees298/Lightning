@@ -18,18 +18,23 @@ class Lightning {
 
 			for(int i = 0;i <= 4; i++) {
 
+						double speed;
 						System.out.println("What's the situation at t = " + i + " minutes?");
-						System.out.print("How many milliseconds between thunder and lightning? "); // input needs whole numbers, not sure why
+						System.out.print("How many seconds between thunder and lightning? ");
 						double time = input.nextDouble();
-						distanceKilometers = time*0.000343;
-
-						dictionary.put(i,time);
-						System.out.println("Time between thunder and lightning is " + time/1000 + " seconds");
+						distanceKilometers = time*0.343;
+						dictionary.put(i,distanceKilometers);
+						System.out.println("Time between thunder and lightning is " + time + " seconds");
 						System.out.println("That means that the lightning strike is " + distanceKilometers + " km away.");
+						while (dictionary.containsKey(i-1)) {
+							speed = (((dictionary.get(i-1))-(dictionary.get(i)))/0.0166667); // 1 minute = 0.0166667 h
+							System.out.println("speed is " + speed + " km/h.");
+							break;
+						}
 						System.out.println();
 						}
 
-			System.out.println(dictionary.get(0) + dictionary.get(1)*400); // test to see if dictionary is filled, nonsense.
+
 				}
 			}
 		}
