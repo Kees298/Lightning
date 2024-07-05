@@ -10,6 +10,7 @@ class Lightning {
 		System.out.println("This program will calculate the distance of a lightning strike.");
 		System.out.println("It will also calculate the speed at which the storm approaches you,"
 				+ " and estimated time of arrival");
+		System.out.println("You will be asked to give 5 inputs, each 1 minute apart.");
 		System.out.println("A negative speed / time of arrival means the storm moves away from you.");
 		System.out.print("Do you want a distance in km or ft? ");
 		String unit = input.nextLine(); // "km" or "ft"
