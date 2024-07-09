@@ -1,6 +1,5 @@
 package nl.Kees298;
 
-import java.util.Objects; //needed to evaluate (Objects.equals(unit, "km")))
 import java.util.Scanner; //Import scanner class
 import java.util.HashMap; //to compute the speed, store the distances.
 class Lightning {
@@ -12,11 +11,12 @@ class Lightning {
 				+ " and estimated time of arrival");
 		System.out.println("A negative speed / time of arrival means the storm moves away from you.");
 		System.out.print("Do you want a distance in km or ft? ");
+
 		String unit = input.nextLine(); // "km" or "ft"
 		System.out.println("The selected unit is " + unit);
 		System.out.println();
 
-		if (Objects.equals(unit, "km")) {
+		if (unit.equals("km")) {
 			double distanceKilometers;
 			HashMap<Integer, Double> dictkm= new HashMap<>(); // stores distances in km
 
@@ -24,6 +24,7 @@ class Lightning {
 
 				double speed; // speed in km/h
 				double estimatedArrival; // time in hours
+
 				System.out.println("What's the situation at t = " + i + " minutes?");
 				System.out.print("How many seconds between thunder and lightning? ");
 				double time = input.nextDouble();
@@ -31,23 +32,25 @@ class Lightning {
 				dictkm.put(i,distanceKilometers);
 				System.out.println("Time between thunder and lightning is " + time + " seconds");
 				System.out.println("That means that the lightning strike is " + distanceKilometers + " km away.");
-				while (dictkm.containsKey(i-1)) { // cannot calculate speed at t = 0
+
+				if (dictkm.containsKey(i-1)) { // cannot calculate speed at t = 0
 					speed = (((dictkm.get(i-1))-(dictkm.get(i)))/0.0166667); // 1 minute = 0.0166667 h
 					estimatedArrival = (dictkm.get(i))/speed;
 					System.out.println("It's speed is " + speed + " km/h.");
 					System.out.println("At this speed, it will arrive here in " + estimatedArrival
 							+ " hours or " + (int) (estimatedArrival*60) + " minutes");
-					break;
-						}
-						System.out.println();
-						}
 				}
-		else if (Objects.equals(unit, "ft")) {
+				System.out.println();
+			}
+		}
+		else if (unit.equals("ft")) {
 			double distanceFeet;
 			HashMap<Integer,Double> dictft = new HashMap<>();
+
 			for(int i = 0;i <= 4; i++) {
 				double speed; //speed in ft/h
 				double estimatedArrival; //time in hours
+
 				System.out.println("What's the situation at t = " + i + " minutes?");
 				System.out.print("How many seconds between thunder and lightning? ");
 				double time = input.nextDouble();
@@ -55,13 +58,13 @@ class Lightning {
 				dictft.put(i,distanceFeet);
 				System.out.println("Time between thunder and lightning is " + time + " seconds");
 				System.out.println("That means that the lightning strike is " + distanceFeet + " ft away.");
-				while (dictft.containsKey(i-1)) { // cannot calculate speed at t = 0
-					speed = (((dictft.get(i-1))-(dictft.get(i)))/0.0166667); // 1 minute = 0.0166667 h
+
+				if (dictft.containsKey(i-1)) { // cannot calculate speed at t = 0
+					speed = (dictft.get(i-1)-(dictft.get(i))/0.0166667); // 1 minute = 0.0166667 h
 					estimatedArrival = (dictft.get(i))/speed;
 					System.out.println("It's speed is " + speed + " ft/h.");
 					System.out.println("At this speed, it will arrive here in " + estimatedArrival
 							+ " hours or " + (int) (estimatedArrival*60) + " minutes");
-					break;
 				}
 				System.out.println();
 			}
