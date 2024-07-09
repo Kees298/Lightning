@@ -8,12 +8,12 @@ class Lightning {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 
-		//textblock printed at the start
+		//text block printed at the start
 		System.out.println("""
 				This program will calculate the distance of a lightning strike.");
 				It will also calculate the speed at which the storm approaches you, and estimated time of arrival");
 				A negative speed / time of arrival means the storm moves away from you.;
-				System.out.print("Do you want a distance in km or ft?
+				Do you want a distance in km or ft?
 				""");
 
 		// unit selection
